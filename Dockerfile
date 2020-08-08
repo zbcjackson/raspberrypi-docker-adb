@@ -1,14 +1,8 @@
 FROM balenalib/raspberrypi3-debian
 
-# Set up insecure default key
-RUN mkdir -m 0750 /root/.android
-ADD files/insecure_shared_adbkey /root/.android/adbkey
-ADD files/insecure_shared_adbkey.pub /root/.android/adbkey.pub
-ADD files/update-platform-tools.sh /usr/local/bin/update-platform-tools.sh
 
 RUN apt-get update && \
-    apt-get install -y unzip gawk wget ca-certificates tini && \
-    /usr/local/bin/update-platform-tools.sh
+    apt-get install -y unzip gawk wget ca-certificates tini android-tools-adb 
 
 # Expose default ADB port
 EXPOSE 5037
