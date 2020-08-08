@@ -59,15 +59,15 @@ parse_repository_xml() {
 }
 
 install_platform_tools() {
-  local SHA="$1"
-  local URL="$2"
+  # local SHA="$1"
+  local URL="platform-tools_r23.0.1-linux.zip"
   local TMPFILE=$(mktemp)
 
   mkdir -p /opt
   echo "Fetching ${URL}" >&2
   wget -O "$TMPFILE" "${REPO}${URL}"
-  echo "Verifying sha1 checksum ${SHA}" >&2
-  echo "$SHA  $TMPFILE" | sha1sum --quiet -c
+  # echo "Verifying sha1 checksum ${SHA}" >&2
+  # echo "$SHA  $TMPFILE" | sha1sum --quiet -c
 
   echo "Removing previous version of platform tools if any" >&2
   rm -rf /opt/platform-tools
@@ -79,4 +79,4 @@ install_platform_tools() {
   echo "Platform tools installed!" >&2
 }
 
-install_platform_tools $(parse_repository_xml)
+install_platform_tools # $(parse_repository_xml)
